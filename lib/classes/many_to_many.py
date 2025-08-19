@@ -24,11 +24,14 @@ class Author:
         return list(set(areas)) if areas else None
     
 class Magazine:
+    all = []
+    
     def __init__(self, name, category):
         self._name = None
         self._category = None
         self.name = name
         self.category = category
+        Magazine.all.append(self)
     
     @property
     def name(self):
@@ -65,6 +68,15 @@ class Magazine:
                 author_counts[article.author] = author_counts.get(article.author, 0) + 1
         authors = [author for author, count in author_counts.items() if count > 2]
         return authors if authors else None
+    
+    @classmethod
+    def top_publisher(cls):
+        if not Article.all:
+            return None
+        magazine_counts = {}
+        for article in Article.all:
+            magazine_counts[article.magazine] = magazine_counts.get(article.magazine, 0) + 1
+        return max(magazine_counts, key=magazine_counts.get)
 
 class Article:
     all = []
