@@ -53,6 +53,18 @@ class Magazine:
         if len(value) == 0:
             raise ValueError("Category must be longer than 0 characters")
         self._category = value
+    
+    def article_titles(self):
+        titles = [article.title for article in Article.all if article.magazine == self]
+        return titles if titles else None
+    
+    def contributing_authors(self):
+        author_counts = {}
+        for article in Article.all:
+            if article.magazine == self:
+                author_counts[article.author] = author_counts.get(article.author, 0) + 1
+        authors = [author for author, count in author_counts.items() if count > 2]
+        return authors if authors else None
 
 class Article:
     all = []
