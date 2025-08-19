@@ -55,6 +55,8 @@ class Magazine:
         self._category = value
 
 class Article:
+    all = []
+    
     def __init__(self, author, magazine, title):
         if not isinstance(title, str):
             raise TypeError("Title must be of type str")
@@ -63,6 +65,7 @@ class Article:
         self._title = title
         self.author = author
         self.magazine = magazine
+        Article.all.append(self)
     
     @property
     def title(self):
