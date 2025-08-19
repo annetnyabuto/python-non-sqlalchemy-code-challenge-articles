@@ -53,5 +53,17 @@ class Magazine:
         if len(value) == 0:
             raise ValueError("Category must be longer than 0 characters")
         self._category = value
+
+class Article:
+    def __init__(self, author, magazine, title):
+        if not isinstance(title, str):
+            raise TypeError("Title must be of type str")
+        if not(5 <= len(title) <= 50):
+            raise ValueError("Title must be between 5 and 50 characters")
+        self._title = title
+        self.author = author
+        self.magazine = magazine
     
-    
+    @property
+    def title(self):
+        return self._title
