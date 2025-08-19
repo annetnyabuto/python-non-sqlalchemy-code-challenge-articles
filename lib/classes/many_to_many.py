@@ -67,3 +67,23 @@ class Article:
     @property
     def title(self):
         return self._title
+    
+    @property
+    def author(self):
+        return self._author
+    
+    @author.setter
+    def author(self, value):
+        if not isinstance(value, Author):
+            raise TypeError("Author must be of type Author")
+        self._author = value
+    
+    @property
+    def magazine(self):
+        return self._magazine
+    
+    @magazine.setter
+    def magazine(self, value):
+        if not isinstance(value, Magazine):
+            raise TypeError("Magazine must be of type Magazine")
+        self._magazine = value
